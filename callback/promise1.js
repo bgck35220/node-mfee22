@@ -13,15 +13,15 @@
 // 剛建立的時候狀態會是 pending
 
 let doWork = function (job, timer) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(`完成工作 ${job}`); // 會把這一個 promise 物件的狀態變成 fulfilled
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`完成工作 ${job}`); // 會把這一個 promise 物件的狀態變成 fulfilled
 
-            // 如果發生錯誤
-            // reject(err)
-            // 會把這一個 promise 物件的狀態變成 rejected
-        }, timer);
-    });
+      // 如果發生錯誤
+      // reject(err)
+      // 會把這一個 promise 物件的狀態變成 rejected
+    }, timer);
+  });
 };
 
 // 刷牙 --> 吃早餐 --> 寫功課
@@ -34,22 +34,22 @@ console.log(`Start ${dt.toISOString()}`);
 // });
 
 doWork("刷牙", 2000)
-    .then((result) => {
-        let dt = new Date();
-        console.log(`${result} at ${dt.toISOString()}`);
+  .then((result) => {
+    let dt = new Date();
+    console.log(`${result} at ${dt.toISOString()}`);
 
-        return doWork("吃早餐", 3000);
-    })
-    .then((result) => {
-        let dt = new Date();
-        console.log(`${result} at ${dt.toISOString()}`);
-        return doWork("寫功課", 2000);
-    })
-    .then((result) => {
-        let dt = new Date();
-        console.log(`${result} at ${dt.toISOString()}`);
-    })
-    .catch((err) => {
-        // 處理錯誤
-        console.error(err);
-    });
+    return doWork("吃早餐", 3000);
+  })
+  .then((result) => {
+    let dt = new Date();
+    console.log(`${result} at ${dt.toISOString()}`);
+    return doWork("寫功課", 2000);
+  })
+  .then((result) => {
+    let dt = new Date();
+    console.log(`${result} at ${dt.toISOString()}`);
+  })
+  .catch((err) => {
+    // 處理錯誤
+    console.error(err);
+  });
