@@ -18,8 +18,8 @@ let doWork = function (job, timer) {
 };
 
 // 刷牙 --> 吃早餐 --> 寫功課
-let dt = new Date();
-console.log(`Start ${dt.toISOString()}`);
+// let dt = new Date();
+// console.log(`Start ${dt.toISOString()}`);
 
 // await 是一種「暫停鍵」，暫停到外包公司有結果為止
 // 而且結果會被回傳、放到 reuslt1 這個變數裡
@@ -32,7 +32,9 @@ async function main() {
   dt = new Date();
   console.log(`${result2} at ${dt.toISOString()}`);
 
-  let result3 = doWork("寫功課", 2000);
+  let result3 = await doWork("寫功課", 2000);
   dt = new Date();
   console.log(`${result3} at ${dt.toISOString()}`);
 }
+
+main();
