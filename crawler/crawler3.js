@@ -1,5 +1,6 @@
 // 用 async/await 寫法練習 axios.get 去證交所取得資料
 // 讀取 stock.txt 檔案，取得 stockNo
+// npm i moment 安裝
 
 const axios = require('axios');
 const { readFile } = require('fs/promises');
