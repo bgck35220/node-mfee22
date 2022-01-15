@@ -1,30 +1,27 @@
-// 用 async/await 寫法練習 axios.get 去證交所取得資料
-
-const axios = require("axios"); //引入套件
+const axios = require('axios');
 
 (async () => {
   try {
-    let response = await axios.get(
-      "https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=20211201&stockNo=2330&_=1641716312720"
-    );
+    // 根據變數去抓取資料
+    let stockNo = 2330;
+    let queryDate = '20220115';
+
+    // let response = await axios.get(
+    //   `https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=${queryDate}&stockNo=${stockNo}`
+    // );
+
+    let response = await axios.get('https://www.twse.com.tw/exchangeReport/STOCK_DAY', {
+      // 這裡可以放一些設定
+      // params: 放 query string 的參數
+      params: {
+        response: 'json',
+        date: queryDate,
+        stockNo,
+      },
+    });
+
     console.log(response.data);
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    console.error(e);
   }
 })();
-
-// https://blog.csdn.net/candyHZhou/article/details/105240672
-
-// async 函數處理多個異步函數
-// axios.defaults.baseURL =
-//   "https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=20211201&stockNo=2330&_=1641716312720";
-// async function queryData() {
-//   // # 2.1 添加await之後 當前的await 返回結果之後才會執行後面的代碼
-//   let info = await axios.get("async1");
-//   // #2.2 讓異步代碼看起來、表現起來更像同步代碼
-//   let ret = await axios.get("async2?info=" + info.data);
-//   return ret.data;
-// }
-// queryData().then(function (data) {
-//   console.log(data.data);
-// });
