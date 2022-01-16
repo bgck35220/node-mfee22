@@ -43,7 +43,7 @@ require("dotenv").config();
     // Using prepared statements
     // to protect from SQL Injection attacks
     let saveNameResult = await connection.execute(
-      "INSERT INTO stocks (id, name) VALUES (?, ?)",
+      "INSERT IGNORE INTO stocks (id, name) VALUES (?, ?)",
       [stockNo, stockName]
     );
     console.log(saveNameResult);
